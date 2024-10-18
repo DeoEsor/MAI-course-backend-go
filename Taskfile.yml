@@ -1,0 +1,42 @@
+version: '3'
+
+env:
+  PROJECT_NAME: cat-store
+
+dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+
+
+tasks:
+  default:
+    cmds:
+        - echo "Project $PROJECT_NAME"
+        - task --list-all
+    silent: true
+
+  build:
+    desc: Собирает исполняемый файл приложения
+    deps:
+      - install-deps
+    cmds:
+      - go build -v -o $PROJECT_NAME.exe cmd/$PROJECT_NAME/main.go 
+
+  run:
+    desc:  Запускает исполняемый файл приложения
+    deps:
+      - build
+    cmds:
+      - ./$PROJECT_NAME.exe
+
+  lint:
+    desc: Запускает проверку кода
+    deps:
+      - install-deps
+    cmds:
+      - golangci-lint run --fix
+
+  install-deps:
+    desc: Установка всех необходимых зависимости проекта
+    cmds:
+      # - pre-commit install
+      # - pre-commit install --hook-type commit-msg
+      - go mod download
