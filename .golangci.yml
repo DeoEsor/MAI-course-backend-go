@@ -1,0 +1,23 @@
+linters:
+  disable-all: true
+  enable:
+  - gci
+  - gofmt
+  - unused
+  - goconst
+  - gocyclo
+  - errcheck
+
+# linters-settings:
+# issues:
+output:
+  sort-results: true
+  sort-order:
+    - linter
+    - severity
+    - file
+  show-stats: true
+run: 
+  timeout: 1m
+  concurrency: 4
+# severity:
