@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	gobasics "github.com/DeoEsor/MAI-course-backend-go/internal/gobasics"
+
 	_ "github.com/joho/godotenv/autoload"
 
 	"github.com/caarlos0/env/v11"
@@ -18,7 +20,10 @@ func main() {
 
 	language := "go"
 
-	fmt.Printf("Hello %v, current environemnt %v", language, config.Environment)
+	fmt.Printf("Hello %v, current environemnt %v\n", language, config.Environment)
+
+	gobasics.Test()
+	gobasics.Functions()
 
 }
 
