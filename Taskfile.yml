@@ -34,9 +34,18 @@ tasks:
     cmds:
       - golangci-lint run --fix
 
+  create_migration:
+    desc: Создать миграцию
+    deps:
+      - install-deps
+    dir: migrations
+    cmds:
+      - goose -s create new_migration sql
+
   install-deps:
     desc: Установка всех необходимых зависимости проекта
     cmds:
       # - pre-commit install
       # - pre-commit install --hook-type commit-msg
       - go mod download
+      - go install github.com/pressly/goose/v3/cmd/goose@latest
