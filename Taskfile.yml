@@ -18,7 +18,7 @@ tasks:
     deps:
       - install-deps
     cmds:
-      - go build -v -o $PROJECT_NAME.exe cmd/$PROJECT_NAME/main.go 
+      - go build -v -o ./bin/$PROJECT_NAME.exe cmd/$PROJECT_NAME/main.go 
 
   run:
     desc:  Запускает исполняемый файл приложения
