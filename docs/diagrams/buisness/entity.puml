@@ -1,0 +1,32 @@
+@startuml create
+
+'Шаблон
+!theme materia-outline
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowThickness 2
+!pragma teoz true
+
+Pet : ID uuid
+Pet : Status Status
+Pet : Name string
+Pet : Passport Passport
+Pet : CreatedAt time
+Pet : UpdatedAt time
+Pet : UpdateName()
+Pet : UpdateStatus()
+
+enum Status {
+    NONE
+    ON_MEDICAL_EXAMINATION
+    ON_RECOVER
+    WAITING_OWNER
+    ADOPTED
+}
+
+Passport : ID uuid
+
+Pet <|-- Status
+Pet <|-- Passport
+
+@enduml

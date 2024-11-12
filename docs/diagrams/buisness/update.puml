@@ -1,0 +1,25 @@
+@startuml create
+
+'Шаблон
+!theme materia-outline
+autonumber
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowThickness 2
+!pragma teoz true
+
+'Участники процесса
+participant "admin"   as Admin
+participant "pet-store"   as Service
+database    "База данных"       as DB
+
+'Действия
+
+Admin -> Service: Поменять имя либо статус питомца
+Service -> DB: Получить из БД
+Service -> Service: Провести изменения
+Service -> DB: Сохранить в БД
+Service -> Admin: $success("питомец успешно изменен")
+
+
+@enduml
