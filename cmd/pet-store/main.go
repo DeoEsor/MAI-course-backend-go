@@ -1,13 +1,14 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/config"
-	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
-	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet/value_object/status"
+	"github.com/DeoEsor/MAI-course-backend-go/internal/use-case/pet/create"
 )
 
 func main() {
+	ctx := context.Background()
 	var config config.Config
 	err := config.Load()
 	if err != nil {
@@ -15,23 +16,18 @@ func main() {
 		return
 	}
 
-	pet := pet.New("Sugrob")
-	fmt.Printf("Created pet with data: %+v\n", pet)
-
-	err = pet.UpdateStatus(status.NONE)
+	handler, err := create.New()
 	if err != nil {
-		fmt.Printf("error while updating status: %v\n", err)
+		fmt.Printf("error while creating handler: %v", err)
+		return
+	}
+	response, err := handler.Handle(ctx, &create.Command{
+		Name: "SpecificName",
+	})
+	if err != nil {
+		fmt.Printf("error while creating handler: %v", err)
+		return
 	}
 
-	err = pet.UpdateStatus(status.Adopted)
-	if err != nil {
-		fmt.Printf("error while updating status: %v\n", err)
-	}
-
-	err = pet.UpdateStatus(status.OnRecover)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(pet)
+	fmt.Println(response.Pet)
 }
