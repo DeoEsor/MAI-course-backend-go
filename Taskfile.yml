@@ -1,7 +1,7 @@
 version: '3'
 
 env:
-  PROJECT_NAME: cat-store
+  PROJECT_NAME: pet-store
 
 dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
 
@@ -22,10 +22,8 @@ tasks:
 
   run:
     desc:  Запускает исполняемый файл приложения
-    deps:
-      - build
     cmds:
-      - ./$PROJECT_NAME.exe
+      - go run ./cmd/$PROJECT_NAME/main.go
 
   lint:
     desc: Запускает проверку кода

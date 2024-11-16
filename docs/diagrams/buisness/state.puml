@@ -1,0 +1,24 @@
+@startuml state
+
+'Шаблон
+!theme materia-outline
+hide empty description
+'autonumber
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowThickness 2
+
+!pragma teoz true
+
+state NONE: Техническое значение
+state ON_MEDICAL_EXAMINATION: На мед осмотре
+state ON_RECOVER: На восстановлении
+state WAITING_OWNER : Ожидает нового владельца
+state ADOPTED : Усыновлен
+
+[*] --> ON_MEDICAL_EXAMINATION : значение при инициализации
+ON_MEDICAL_EXAMINATION --> ON_RECOVER : после мед осмотра питомец на восстановлении
+ON_RECOVER --> WAITING_OWNER : После периода восстановления питомец уже готов вступить в новую семью
+WAITING_OWNER --> ADOPTED : Найден владелец
+
+@enduml
