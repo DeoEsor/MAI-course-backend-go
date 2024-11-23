@@ -1,7 +1,7 @@
 version: '3'
 
 env:
-  PROJECT_NAME: cat-store
+  PROJECT_NAME: pet-store
 
 dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
 

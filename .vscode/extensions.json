@@ -3,6 +3,7 @@
         "golang.go",
         "redhat.vscode-yaml",
         "task.vscode-task",
-        "kangping.protobuf"
+        "kangping.protobuf",
+        "jebbs.plantuml"
     ]
 }
