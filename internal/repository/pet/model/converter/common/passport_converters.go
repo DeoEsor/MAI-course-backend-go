@@ -13,9 +13,9 @@ func PassportToJson(entity *passport.Passport) (string, error) {
 	return string(jsonBytes), nil
 }
 
-func JsonToPassport(json string) (*passport.Passport, error) {
+func JsonToPassport(jsonValue string) (*passport.Passport, error) {
 	var entity passport.Passport
-	err := json.Unmarshal([]byte(json), &entity)
+	err := json.Unmarshal([]byte(jsonValue), &entity)
 	if err != nil {
 		return nil, err
 	}

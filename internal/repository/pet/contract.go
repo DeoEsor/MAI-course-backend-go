@@ -27,6 +27,13 @@ type RepositoryUpdater interface {
 	Update(ctx context.Context, modelRun *pet.Pet, version time.Time) error
 }
 
+type RepositoryI interface {
+	RepositoryCreate
+	RepositoryGetter
+	RepositoryUpdater
+	RepositorySearcher
+}
+
 type RepositorySearchQuery struct {
 	Name      *string    `db:"name"`
 	ProjectId *uuid.UUID `db:"project_id"`
