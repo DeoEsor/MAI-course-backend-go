@@ -9,12 +9,12 @@ import (
 )
 
 type Pet struct {
-	ID        uuid.UUID `json:"id"`
-	Status    status.Status
-	Name      string
-	Passport  passport.Passport
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        uuid.UUID          `json:"id"`
+	Status    status.Status      `json:"status"`
+	Name      string             `json:"name"`
+	Passport  *passport.Passport `json:"passport"`
+	CreatedAt time.Time          `json:"created_at"`
+	UpdatedAt time.Time          `json:"updated_at"`
 }
 
 func (pet *Pet) UpdateName(newName string) {

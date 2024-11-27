@@ -7,7 +7,8 @@ import (
 )
 
 type Config struct {
-	Environment string `env:"ENVIRONMENT"`
+	Environment    string         `env:"ENVIRONMENT"`
+	DatabaseConfig DatabaseConfig `envPrefix:"DATABASE_"`
 }
 
 func (cfg *Config) Load() error {

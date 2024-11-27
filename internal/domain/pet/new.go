@@ -15,7 +15,7 @@ func New(name string) *Pet {
 		ID:        id,
 		Status:    status.OnMedicalExamination,
 		Name:      name,
-		Passport:  passport.Passport{},
+		Passport:  &passport.Passport{},
 		CreatedAt: now,
 		UpdatedAt: now,
 	}

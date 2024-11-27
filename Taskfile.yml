@@ -18,7 +18,12 @@ tasks:
     deps:
       - install-deps
     cmds:
-      - go build -v -o ./bin/$PROJECT_NAME.exe cmd/$PROJECT_NAME/main.go 
+      - go build -v -o ./bin/$PROJECT_NAME.exe cmd/$PROJECT_NAME/main.go
+
+  docker-run:
+    desc: Запускает исполняемый файл приложения
+    cmds:
+      - ./bin/$PROJECT_NAME.exe
 
   run:
     desc:  Запускает исполняемый файл приложения
@@ -38,3 +43,17 @@ tasks:
       # - pre-commit install
       # - pre-commit install --hook-type commit-msg
       - go mod download
+      # - docker compose up -d
+
+  create-migration:
+    desc: Создает новую миграцию
+    dir: migrations
+    cmds:
+      - go install github.com/pressly/goose/v3/cmd/goose@latest
+      - goose -s create new_migration sql
+
+  run-migrations:
+    desc: Запускает миграцию
+    dir: migrations
+    cmds:
+      - goose postgres "postgres://postgres:postgres@localhost:5432/postgres" up
