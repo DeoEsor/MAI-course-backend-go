@@ -5,6 +5,7 @@ go 1.22.4
 replace github.com/DeoEsor/MAI-course-backend-go => ./
 
 require (
+	github.com/brianvoe/gofakeit/v7 v7.1.2
 	github.com/caarlos0/env/v11 v11.2.2
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.7.1

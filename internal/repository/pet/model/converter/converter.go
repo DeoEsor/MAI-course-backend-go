@@ -3,6 +3,7 @@ package converter
 import (
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet/model"
+	"github.com/jmoiron/sqlx"
 )
 
 //go:generate goverter gen ./
@@ -13,7 +14,6 @@ import (
 // goverter:matchIgnoreCase
 // goverter:ignoreMissing
 // goverter:ignoreUnexported
-// goverter:ignoreMissing
 // goverter:useZeroValueOnPointerInconsistency
 // goverter:skipCopySameType
 // goverter:matchIgnoreCase
@@ -22,3 +22,23 @@ var (
 	ToDB   func(request *pet.Pet) (*model.PetDB, error)
 	FromDb func(request *model.PetDB) (*pet.Pet, error)
 )
+
+func FromDbRows(rows *sqlx.Rows) (result []*pet.Pet, err error) {
+	defer rows.Close()
+
+	for rows.Next() {
+		petDb := &model.PetDB{}
+		err := rows.StructScan(petDb)
+		if err != nil {
+			return nil, err
+		}
+		projectDomain, err := FromDb(petDb)
+		if err != nil {
+			return nil, err
+		}
+
+		result = append(result, projectDomain)
+	}
+
+	return result, nil
+}

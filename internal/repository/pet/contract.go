@@ -8,9 +8,9 @@ import (
 	"github.com/google/uuid"
 )
 
-//go:generate mockgen -source=./contract.go -destination=./contract.mock.gen.go -package=model_run -typed=true
+//go:generate mockgen -source=./contract.go -destination=./contract.mock.gen.go -package=pet -typed=true
 
-type RepositoryCreate interface {
+type RepositoryCreator interface {
 	Create(ctx context.Context, pet *pet.Pet) error
 }
 
@@ -28,15 +28,14 @@ type RepositoryUpdater interface {
 }
 
 type RepositoryI interface {
-	RepositoryCreate
+	RepositoryCreator
 	RepositoryGetter
 	RepositoryUpdater
 	RepositorySearcher
 }
 
 type RepositorySearchQuery struct {
-	Name      *string    `db:"name"`
-	ProjectId *uuid.UUID `db:"project_id"`
-	Offset    int        `db:"offset"`
-	Limit     int        `db:"limit"`
+	Name   *string `db:"name"`
+	Offset int     `db:"offset"`
+	Limit  int     `db:"limit"`
 }

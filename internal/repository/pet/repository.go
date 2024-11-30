@@ -5,13 +5,13 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type Repository struct {
+type repository struct {
 	db *sqlx.DB
 }
 
 func New(ctx context.Context, db *sqlx.DB) (RepositoryI, error) {
 
-	return &Repository{
+	return &repository{
 		db: db,
 	}, nil
 }

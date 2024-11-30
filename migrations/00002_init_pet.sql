@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS pet (
     updated_at      timestamp without time zone not null
 );
 
--- TODO indexes
+create index idx_name_pet on pet(name)
 -- +goose StatementEnd
 
 -- +goose Down
