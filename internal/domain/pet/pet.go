@@ -19,25 +19,6 @@ type Pet struct {
 	UpdatedAt time.Time          `json:"updated_at"`
 }
 
-func (pet *Pet) UpdateName(newName string) {
-	pet.Name = newName
-	pet.UpdatedAt = time.Now().UTC()
-}
-
-func (pet *Pet) UpdateStatus(newStatus status.Status) error {
-	allowed, err := pet.Status.IsTransitionAllowed(newStatus)
-	if err != nil {
-		return err
-	}
-	if !allowed {
-		return fmt.Errorf("pet %v is not allowed to change status [from state %v, to state %v]", pet.ID, pet.Status, newStatus)
-	}
-
-	pet.Status = newStatus
-	pet.UpdatedAt = time.Now().UTC()
-	return nil
-}
-
 func (pet *Pet) String() string {
 	return fmt.Sprintf(
 		"pet with id %v on state %v with name %v created at %v update at %v",
