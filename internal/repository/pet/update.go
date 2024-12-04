@@ -3,9 +3,10 @@ package pet
 import (
 	"context"
 	"errors"
+	"time"
+
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet/model/converter"
-	"time"
 )
 
 func (repository *repository) Update(ctx context.Context, pet *pet.Pet, version time.Time) error {

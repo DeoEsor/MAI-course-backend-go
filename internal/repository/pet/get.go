@@ -3,9 +3,11 @@ package pet
 import (
 	"context"
 	"errors"
+
+	"github.com/google/uuid"
+
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet/model/converter"
-	"github.com/google/uuid"
 )
 
 func (repository *repository) GetRequired(ctx context.Context, petId uuid.UUID) (*pet.Pet, error) {
@@ -20,7 +22,6 @@ func (repository *repository) GetRequired(ctx context.Context, petId uuid.UUID) 
 }
 
 func (repository *repository) Get(ctx context.Context, petId uuid.UUID) (*pet.Pet, error) {
-
 	const query = `
 		SELECT 
 		    id,

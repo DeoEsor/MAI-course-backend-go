@@ -5,20 +5,18 @@ import (
 	"slices"
 )
 
-var (
-	transitionMap = map[Status][]Status{
-		OnMedicalExamination: []Status{
-			OnRecover,
-		},
-		OnRecover: {
-			WaitingOwner,
-		},
-		WaitingOwner: {
-			Adopted,
-		},
-		Adopted: {}, // конечное значение
-	}
-)
+var transitionMap = map[Status][]Status{
+	OnMedicalExamination: {
+		OnRecover,
+	},
+	OnRecover: {
+		WaitingOwner,
+	},
+	WaitingOwner: {
+		Adopted,
+	},
+	Adopted: {}, // конечное значение
+}
 
 func (state Status) IsTransitionAllowed(newStatus Status) (bool, error) {
 	allowedToStatuses, ok := transitionMap[state]

@@ -1,9 +1,11 @@
 package config
 
 import (
-	_ "github.com/joho/godotenv/autoload"
-
 	"github.com/caarlos0/env/v11"
+	"github.com/samber/do/v2"
+	log "github.com/sirupsen/logrus"
+
+	_ "github.com/joho/godotenv/autoload"
 )
 
 type Config struct {
@@ -11,6 +13,20 @@ type Config struct {
 	DatabaseConfig DatabaseConfig `envPrefix:"DATABASE_"`
 }
 
-func (cfg *Config) Load() error {
-	return env.Parse(cfg)
+func Load() (*Config, error) {
+	var cfg Config
+	err := env.Parse(&cfg)
+	if err != nil {
+		return nil, err
+	}
+	return &cfg, nil
+}
+
+func (cfg *Config) Register(injector do.Injector) (*Config, error) {
+	log.
+		WithFields(log.Fields{
+			"service": "config",
+		}).
+		Info("service invoked")
+	return cfg, nil
 }

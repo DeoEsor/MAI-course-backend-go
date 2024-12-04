@@ -3,10 +3,12 @@ package bootstrap
 import (
 	"context"
 	"fmt"
-	"github.com/DeoEsor/MAI-course-backend-go/internal/config"
+
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
+
+	"github.com/DeoEsor/MAI-course-backend-go/internal/config"
 )
 
 func ConfigureDb(ctx context.Context, dbConfig *config.DatabaseConfig) (*sqlx.DB, context.CancelFunc, error) {

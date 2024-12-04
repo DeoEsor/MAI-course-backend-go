@@ -2,10 +2,12 @@ package pet
 
 import (
 	"fmt"
+	"time"
+
+	"github.com/google/uuid"
+
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet/value_object/passport"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet/value_object/status"
-	"github.com/google/uuid"
-	"time"
 )
 
 type Pet struct {

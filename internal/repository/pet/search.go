@@ -3,12 +3,12 @@ package pet
 import (
 	"context"
 	"fmt"
+
 	pet2 "github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet/model/converter"
 )
 
 func (repository *repository) Search(ctx context.Context, searchQuery *RepositorySearchQuery) ([]*pet2.Pet, error) {
-
 	if searchQuery.Name != nil {
 		name := "%" + *searchQuery.Name + "%"
 		searchQuery.Name = &name

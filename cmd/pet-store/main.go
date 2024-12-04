@@ -2,69 +2,46 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"github.com/DeoEsor/MAI-course-backend-go/internal/bootstrap"
+	log "github.com/sirupsen/logrus"
+
+	"github.com/DeoEsor/MAI-course-backend-go/internal"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/config"
-	repositoryPet "github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet"
-	"github.com/brianvoe/gofakeit/v7"
-	"sync"
-	"time"
 )
 
 func main() {
-	ctx := context.Background()
-	var cfg config.Config
-	err := cfg.Load()
+	ctx := context.Background() // TODO graceful
+	cfg, err := config.Load()
 	if err != nil {
-		fmt.Printf("error while parsing config: %v", err)
-		return
+		// structured logging
+		log.Fatalf("error while parsing config: %v", err)
 	}
 
-	db, closeConnection, err := bootstrap.ConfigureDb(ctx, &cfg.DatabaseConfig)
+	app, err := internal.New(ctx, cfg)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-	defer closeConnection()
-
-	if err := db.PingContext(ctx); err != nil {
-		panic(err)
+	if err = app.Run(ctx); err != nil {
+		log.Fatal(err)
 	}
-	fmt.Println("ping database success")
-
-	repository, err := repositoryPet.New(ctx, db)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("Created repository: %T\n", repository)
-
-	pets, err := repository.Search(ctx, &repositoryPet.RepositorySearchQuery{
-		Offset: 0,
-		Limit:  1,
-	})
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("Found pets: %+v\n", pets)
-
-	var wg sync.WaitGroup
-
-	for i := range 2 {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			pet := pets[0]
-			version := pet.UpdatedAt
-
-			pet.UpdateName(gofakeit.Name())
-			sleepTime := time.Duration(i) * time.Second
-			time.Sleep(sleepTime) // long operation
-
-			err := repository.Update(ctx, pet, version)
-			if err != nil {
-				fmt.Printf("error while updating pet: %v %v", pet.ID, err)
-			}
-			fmt.Printf("Updated pet: %+v\n", pet)
-		}()
-	}
-	wg.Wait()
 }
+
+// mvc (model view controller)
+// 			model (model данные) view(слой представления) controller (логика)
+//    Startup, Small business
+
+// mvc (model view component)
+// Front,  Unity GameDev
+
+// mvvm (model view view-model)
+//      Desktop, Microsoft, Web API
+///-------------
+// layered architecture
+//     Go, ASP NET, JAVA, Python microservices
+// 3-4 layered
+// Api, Domain (Buisness Layer), Infrastructure
+
+// clean architecture
+//     Go, ASP NET, JAVA, Python (Controller, Consumer, Domain, Use Case,  Services, Repository, Producers, External) microservices
+
+// onion architecture
+//     Go, ASP NET, JAVA, Python (Presentation, Domain, Application, Infrastructure, External) microservices

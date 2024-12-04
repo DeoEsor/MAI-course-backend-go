@@ -2,6 +2,7 @@ package common
 
 import (
 	"encoding/json"
+
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet/value_object/passport"
 )
 

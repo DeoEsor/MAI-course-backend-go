@@ -1,9 +1,10 @@
 package converter
 
 import (
+	"github.com/jmoiron/sqlx"
+
 	"github.com/DeoEsor/MAI-course-backend-go/internal/domain/pet"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/repository/pet/model"
-	"github.com/jmoiron/sqlx"
 )
 
 //go:generate goverter gen ./

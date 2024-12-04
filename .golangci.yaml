@@ -1,0 +1,56 @@
+linters:
+  disable-all: true
+  fast: true
+  enable:
+    - unused
+    - gofmt
+    - gofumpt
+    - goimports
+    - gci
+#    - tagliatelle
+linters-settings:
+  tagliatelle:
+    case:
+      rules:
+        json: camel
+        env: upperSnake
+        envconfig: upperSnake
+        envprefix: upperSnake
+        db: snake
+  gci:
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default # Default section: contains all imports that could not be matched to another section type.
+      - blank # Blank section: contains all blank imports. This section is not present unless explicitly enabled.
+      - dot # Dot section: contains all dot imports. This section is not present unless explicitly enabled.
+      - alias # Alias section: contains all alias imports. This section is not present unless explicitly enabled.
+      - prefix(github.com/DeoEsor) # Custom section: groups all imports with the specified Prefix.
+      - localmodule # Local module section: contains all local packages. This section is not present unless explicitly enabled.
+    skip-generated: true
+    custom-order: true
+    no-lex-order: false
+
+
+issues:
+  exclude-dirs:
+    - pkg
+  exclude-generated: strict
+output:
+  formats:
+    #    - format: checkstyle
+    #      path: report.xml
+    - format: colored-line-number
+
+  sort-results: true
+  sort-order:
+    - linter
+    - severity
+    - file
+
+run:
+
+  timeout: 5m
+  concurrency: 10
+  allow-parallel-runners: true
+  tests: false
+  go: 1.23.1
