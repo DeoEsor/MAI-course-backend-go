@@ -6,7 +6,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func (useCase useCase) Create(ctx context.Context, command *Command) (*CommandResponse, error) {
+func (useCase *useCase) Create(ctx context.Context, command *Command) (*CommandResponse, error) {
 	pet := pet2.New(command.Name)
 
 	err := useCase.petRepository.Create(ctx, pet)

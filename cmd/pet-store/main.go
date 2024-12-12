@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
-	log "github.com/sirupsen/logrus"
+	log "github.com/rs/zerolog"
+	"os"
+	"time"
 
 	"github.com/DeoEsor/MAI-course-backend-go/internal"
 	"github.com/DeoEsor/MAI-course-backend-go/internal/config"
@@ -11,17 +13,27 @@ import (
 func main() {
 	ctx := context.Background() // TODO graceful
 	cfg, err := config.Load()
+	logger := log.New(log.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}).
+		With().
+		Timestamp().
+		Caller().
+		Ctx(ctx).
+		Logger()
+
 	if err != nil {
-		// structured logging
-		log.Fatalf("error while parsing config: %v", err)
+		logger.Fatal().
+			Err(err).
+			Msg("error while parsing config")
 	}
 
 	app, err := internal.New(ctx, cfg)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal().
+			Err(err)
 	}
 	if err = app.Run(ctx); err != nil {
-		log.Fatal(err)
+		logger.Fatal().
+			Err(err)
 	}
 }
 

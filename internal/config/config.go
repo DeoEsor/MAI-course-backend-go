@@ -2,10 +2,8 @@ package config
 
 import (
 	"github.com/caarlos0/env/v11"
-	"github.com/samber/do/v2"
-	log "github.com/sirupsen/logrus"
-
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/samber/do/v2"
 )
 
 type Config struct {
@@ -23,10 +21,5 @@ func Load() (*Config, error) {
 }
 
 func (cfg *Config) Register(injector do.Injector) (*Config, error) {
-	log.
-		WithFields(log.Fields{
-			"service": "config",
-		}).
-		Info("service invoked")
 	return cfg, nil
 }
