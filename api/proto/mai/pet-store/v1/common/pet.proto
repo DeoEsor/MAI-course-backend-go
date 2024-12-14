@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package mai.backend.go.pet_store.v1.common;
+
+//import "buf/validate/validate.proto";
+
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/DeoEsor/MAI-course-backend-go/pkg/api/proto/mai/pet-store/v1/common;common";
+
+
+message Pet {
+  string id = 1;
+//  [
+//    (buf.validate.field).string = {uuid: true},
+//    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = "uuid"
+//  ];
+  Status status = 2;
+  string name = 3;
+  Passport passport = 4;
+
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message Passport {
+  string id = 1;
+//  [
+//    (buf.validate.field).string = {uuid: true},
+//    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = "uuid"
+//  ];
+}
+
+enum Status {
+  STATUS_NONE = 0;
+  STATUS_ON_MEDICAL_EXAMINATION = 1;
+  STATUS_ON_RECOVER = 2;
+  STATUS_WAITING_OWNER = 3;
+  STATUS_ADOPTED = 4;
+}

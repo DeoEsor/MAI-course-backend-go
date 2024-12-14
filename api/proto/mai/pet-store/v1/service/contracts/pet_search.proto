@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package mai.backend.go.pet_store.v1.contracts;
+
+//import "buf/validate/validate.proto";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "api/proto/mai/pet-store/v1/common/pet.proto";
+
+option go_package = "github.com/DeoEsor/MAI-course-backend-go/pkg/api/proto/mai/pet-store/v1/service/contracts;contracts";
+
+
+message SearchPetRequest {
+  repeated string ids = 1;
+//  [
+//    (buf.validate.field).repeated.items = { string:{uuid: true}},
+//    (buf.validate.field).repeated.max_items = 100,
+//    (buf.validate.field).required = false,
+//    (buf.validate.field).ignore_empty = true ,
+//    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = "uuid"
+//  ];
+
+  int32 limit = 10;
+//  [
+//    (buf.validate.field).int32 = {gte: 1, lte: 100}
+//  ];
+
+  int32 offset = 11;
+//  [
+//    (buf.validate.field).int32.gte = 0
+//  ];
+}
+
+message SearchPetResponse {
+  repeated common.Pet pets = 1;
+//  [
+//    (buf.validate.field).repeated = {max_items: 100}
+//  ];
+}

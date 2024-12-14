@@ -1,0 +1,440 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pet Store Service",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "PetApi"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/PetApi/Create": {
+      "post": {
+        "operationId": "PetApi_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/contractsCreatePetResponse"
+            }
+          },
+          "400": {
+            "description": "Некорректный запрос",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "401": {
+            "description": "Необходима авторизация",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "403": {
+            "description": "Доступ запрещен",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "404": {
+            "description": "Ресурс не найден",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contractsCreatePetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PetApi"
+        ]
+      }
+    },
+    "/api/PetApi/Get": {
+      "post": {
+        "operationId": "PetApi_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/contractsGetPetResponse"
+            }
+          },
+          "400": {
+            "description": "Некорректный запрос",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "401": {
+            "description": "Необходима авторизация",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "403": {
+            "description": "Доступ запрещен",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "404": {
+            "description": "Ресурс не найден",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contractsGetPetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PetApi"
+        ]
+      }
+    },
+    "/api/PetApi/Search": {
+      "post": {
+        "operationId": "PetApi_Search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/contractsSearchPetResponse"
+            }
+          },
+          "400": {
+            "description": "Некорректный запрос",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "401": {
+            "description": "Необходима авторизация",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "403": {
+            "description": "Доступ запрещен",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "404": {
+            "description": "Ресурс не найден",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contractsSearchPetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PetApi"
+        ]
+      }
+    },
+    "/api/PetApi/Update": {
+      "post": {
+        "operationId": "PetApi_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/contractsUpdatePetResponse"
+            }
+          },
+          "400": {
+            "description": "Некорректный запрос",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "401": {
+            "description": "Необходима авторизация",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "403": {
+            "description": "Доступ запрещен",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "404": {
+            "description": "Ресурс не найден",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contractsUpdatePetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PetApi"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonPassport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "[\n    (buf.validate.field).string = {uuid: true},\n    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = \"uuid\"\n  ];"
+        }
+      }
+    },
+    "commonPet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/v1commonStatus",
+          "title": "[\n   (buf.validate.field).string = {uuid: true},\n   (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = \"uuid\"\n ];"
+        },
+        "name": {
+          "type": "string"
+        },
+        "passport": {
+          "$ref": "#/definitions/commonPassport"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "contractsCreatePetRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "[\n    (buf.validate.field).string = {max_len: 255}\n  ];"
+        }
+      }
+    },
+    "contractsCreatePetResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "contractsGetPetRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "[\n    (buf.validate.field).string = {uuid: true},\n    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = \"uuid\"\n  ];"
+        }
+      }
+    },
+    "contractsGetPetResponse": {
+      "type": "object",
+      "properties": {
+        "pet": {
+          "$ref": "#/definitions/commonPet"
+        }
+      }
+    },
+    "contractsSearchPetRequest": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[\n    (buf.validate.field).repeated.items = { string:{uuid: true}},\n    (buf.validate.field).repeated.max_items = 100,\n    (buf.validate.field).required = false,\n    (buf.validate.field).ignore_empty = true ,\n    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = \"uuid\"\n  ];"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "title": "[\n    (buf.validate.field).int32 = {gte: 1, lte: 100}\n  ];"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "[\n    (buf.validate.field).int32.gte = 0\n  ];"
+        }
+      }
+    },
+    "contractsSearchPetResponse": {
+      "type": "object",
+      "properties": {
+        "pets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonPet"
+          },
+          "title": "[\n    (buf.validate.field).repeated = {max_items: 100}\n  ];"
+        }
+      }
+    },
+    "contractsUpdatePetRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "[\n    (buf.validate.field).string = {min_len: 3, max_len: 128}\n  ];",
+          "title": "[\n   (buf.validate.field).string = {uuid: true},\n   (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = \"uuid\"\n ];"
+        }
+      }
+    },
+    "contractsUpdatePetResponse": {
+      "type": "object"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "v1commonStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_NONE",
+        "STATUS_ON_MEDICAL_EXAMINATION",
+        "STATUS_ON_RECOVER",
+        "STATUS_WAITING_OWNER",
+        "STATUS_ADOPTED"
+      ],
+      "default": "STATUS_NONE"
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "externalDocs": {
+    "url": "https://yandex.ru"
+  }
+}

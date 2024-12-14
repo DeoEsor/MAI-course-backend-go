@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package mai.backend.go.pet_store.v1;
+
+import "google/api/annotations.proto";
+
+import "api/proto/mai/pet-store/v1/service/contracts/pet_create.proto";
+import "api/proto/mai/pet-store/v1/service/contracts/pet_update.proto";
+import "api/proto/mai/pet-store/v1/service/contracts/pet_get.proto";
+import "api/proto/mai/pet-store/v1/service/contracts/pet_search.proto";
+
+option go_package = "github.com/DeoEsor/MAI-course-backend-go/pkg/api/proto/mai/pet-store/v1/service;service";
+
+service PetApi {
+
+  rpc Create(contracts.CreatePetRequest) returns (contracts.CreatePetResponse){
+    option (google.api.http) = {
+      post: "/api/PetApi/Create"
+      body: "*"
+    };
+  };
+
+  rpc Get(contracts.GetPetRequest) returns (contracts.GetPetResponse){
+    option (google.api.http) = {
+      post: "/api/PetApi/Get"
+      body: "*"
+    };
+  };
+
+  rpc Update(contracts.UpdatePetRequest) returns (contracts.UpdatePetResponse){
+    option (google.api.http) = {
+      post: "/api/PetApi/Update"
+      body: "*"
+    };
+  };
+
+  rpc Search(contracts.SearchPetRequest) returns (contracts.SearchPetResponse){
+    option (google.api.http) = {
+      post: "/api/PetApi/Search"
+      body: "*"
+    };
+  };
+
+}

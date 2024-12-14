@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package mai.backend.go.pet_store.v1.contracts;
+
+
+//import "buf/validate/validate.proto";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+
+option go_package = "github.com/DeoEsor/MAI-course-backend-go/pkg/api/proto/mai/pet-store/v1/service/contracts;contracts";
+
+
+message CreatePetRequest {
+  string name = 1;
+//  [
+//    (buf.validate.field).string = {max_len: 255}
+//  ];
+}
+
+
+message CreatePetResponse {
+  string id = 1
+  [
+//    (buf.validate.field).string = {uuid: true},
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field).format = "uuid"
+  ];
+}
